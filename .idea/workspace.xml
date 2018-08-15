@@ -101,20 +101,16 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48879403">
+    <splitter split-orientation="horizontal" split-proportion="0.9">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ComputorV1.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/ComputorV1.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="363" column="64" selection-start-line="363" selection-start-column="64" selection-end-line="363" selection-end-column="64" />
+                <state relative-caret-position="668">
+                  <caret line="324" selection-start-line="324" selection-end-line="324" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-                    <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-                    <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-                    <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
                   </folding>
                 </state>
               </provider>
@@ -147,6 +143,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>getIndex</find>
+      <find>Solve</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -232,7 +229,7 @@
     <configuration name="ComputorV1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ComputorV1" />
       <module name="computor-v1" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;42 * X^0 = 42 * X^0&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;25X^2 - 15X^1 + 10x^0 - 25 = 10X^2&quot;" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -319,12 +316,12 @@
       <workItem from="1534233408484" duration="711000" />
       <workItem from="1534237972889" duration="543000" />
       <workItem from="1534308257774" duration="604000" />
-      <workItem from="1534309057476" duration="3486000" />
+      <workItem from="1534309057476" duration="5823000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38911000" />
+    <option name="totallyTimeSpent" value="41248000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,7 +334,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-36" width="1920" height="1116" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="8" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936507" />
@@ -355,16 +351,16 @@
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.16950959" />
       <window_info anchor="right" id="Database" order="9" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
       <window_info id="Learn" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39810926" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39810926" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32837301" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="SciView" order="10" />
@@ -387,17 +383,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ComputorV1.java</url>
-          <line>213</line>
+          <line>209</line>
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ComputorV1.java</url>
-          <line>360</line>
+          <line>324</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ComputorV1.java</url>
+          <line>270</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -407,10 +409,6 @@
           <caret line="304" column="14" selection-start-line="304" selection-start-column="14" selection-end-line="304" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
           </folding>
         </state>
       </provider>
@@ -428,10 +426,6 @@
           <caret line="57" column="90" lean-forward="true" selection-start-line="57" selection-start-column="90" selection-end-line="57" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
           </folding>
         </state>
       </provider>
@@ -449,10 +443,6 @@
           <caret line="318" selection-start-line="318" selection-end-line="318" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
           </folding>
         </state>
       </provider>
@@ -470,10 +460,6 @@
           <caret line="318" selection-start-line="318" selection-end-line="318" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
           </folding>
         </state>
       </provider>
@@ -498,10 +484,6 @@
           <caret line="318" lean-forward="true" selection-start-line="318" selection-end-line="318" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
           </folding>
         </state>
       </provider>
@@ -555,14 +537,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ComputorV1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="363" column="64" selection-start-line="363" selection-start-column="64" selection-end-line="363" selection-end-column="64" />
+        <state relative-caret-position="668">
+          <caret line="324" selection-start-line="324" selection-end-line="324" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#splitNumber#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#getIndex#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#floatToDegree#0;class#Part#0;class#ComputorV1#0" />
-            <element signature="method#intToDegree#0;class#Part#0;class#ComputorV1#0" />
           </folding>
         </state>
       </provider>

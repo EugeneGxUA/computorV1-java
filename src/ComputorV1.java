@@ -154,11 +154,9 @@ public class ComputorV1 {
             if (part.isX) {
                 xList.add(part);
             } else {
-                if (part.floatIndex == 0) {
-                    numeric = numeric + " " + part.sign + " " + part.intIndex;
-                } else {
-                    numeric = numeric + " " + part.sign + " " + part.floatIndex;
-                }
+
+            	numeric = numeric + " " + part.sign + " " + dF.format(part.index);
+
             }
         }
 
@@ -201,11 +199,9 @@ public class ComputorV1 {
         String lastOne = String.valueOf(someNumeric);
 
         for (Part part : newParts) {
-            if (part.floatIndex == 0) {
-                lastOne = lastOne + " " + part.sign + " " + part.intIndex + "X^" + part.power;
-            } else {
-                lastOne = lastOne + " " + part.sign + " " + part.floatIndex + "X^" + part.power;
-            }
+
+        	lastOne = lastOne + " " + part.sign + " " + part.index + "X^" + part.power;
+
             finalEquation = lastOne + " = 0";
         }
 
@@ -235,71 +231,43 @@ public class ComputorV1 {
     private static Part createNewPart(List<Part> partList) {
         String sign;
         String index = "0";
-        Integer indexIntResult = 0;
-        Double indexDoubleResult = 0d;
+        Double indexValue = 0d;
+
         int power = partList.get(0).power;
 
         for (Part part : partList) {
-            if (part.floatIndex == 0) {
-                index = index + " " + part.sign + " " + part.intIndex;
-            } else {
-                index = index + " " + part.sign + " " + part.floatIndex;
-            }
+
+        	index = index + " " + part.sign + " " + part.index;
+
         }
 
         try {
             Object result = engine.eval(index);
-            try {
-                indexIntResult = (Integer) result;
+			indexValue = (Double) result;
 
-                sign = (indexIntResult >= 0) ? "+" : "-";
+			sign = (indexValue >= 0) ? "+" : "-";
 
-                if (indexIntResult < 0) indexIntResult *= -1;
+			if (indexValue < 0) indexValue *= -1;
 
-                if (indexIntResult == 0) {
-                    return null;
-                }
+			if (indexValue == 0) {
+				return null;
+			}
 
-                if (power == 2) {
-                    isQuadratic = true;
-                }
+			if (power == 2) {
+				isQuadratic = true;
+			}
 
-                Part part = new Part(indexIntResult + "X^" + power, true, false);
-                part.sign = sign;
-                return part;
-            } catch (ClassCastException e) {
-                indexIntResult = null;
-            }
-
-            try {
-                indexDoubleResult = (Double) result;
-
-                sign = (indexDoubleResult >= 0) ? "+" : "-";
-
-                if (indexDoubleResult < 0) indexDoubleResult *= -1d;
-
-                if (indexDoubleResult == 0f) {
-                    return null;
-                }
-
-                if (power == 2) {
-                    isQuadratic = true;
-                }
-
-                Part part = new Part(indexDoubleResult + "X^" + power, true, false);
-                part.sign = sign;
-                return part;
-            } catch (ClassCastException e) {
-                indexDoubleResult = null;
-            }
+			Part part = new Part(dF.format(indexValue) + "X^" + power, true, false);
+			part.sign = sign;
+			return part;
 
         } catch (ScriptException e) {
             throw new RuntimeException(e);
         }
-        throw new RuntimeException();
+
     }
 
-    private static double sqrt(float value) {
+    private static double sqrt(double value) {
     	if (value == 0 || value == 1) {
     		return value;
 		}
@@ -314,25 +282,21 @@ public class ComputorV1 {
 	}
 
     private static void solveQuadric() {
-    	float a = 0;
-    	float b = 0;
-    	float c = someNumeric;
+    	double a = 0;
+    	double b = 0;
+    	double c = someNumeric;
 
 
-    	float d;
+    	double d;
 		for (Part part : newParts) {
 			if (part.power == 2) {
-				if (part.floatIndex == 0) {
-					a = part.intIndex;
-				} else {
-					a = part.floatIndex;
-				}
+
+				a = part.index;
+
 			} else {
-				if (part.floatIndex == 0) {
-					b = part.intIndex;
-				} else {
-					b = part.floatIndex;
-				}
+
+				b = part.index;
+
 			}
 		}
 
@@ -344,14 +308,14 @@ public class ComputorV1 {
 			double x1 = ((b * -1) + sqrt(d)) / (2 * a);
 			double x2 = ((b * -1) - sqrt(d)) / (2 * a);
 
-			System.out.println("X1 = " + x1);
-			System.out.println("X2 = " + x2);
+			System.out.println("X1 = " + dF.format(x1));
+			System.out.println("X2 = " +dF.format(x2));
 		} else if (d == 0) {
 
 			System.out.println("Discriminant is equals zero :");
 
 			double x = (b / (2 * a)) * -1;
-			System.out.println("X = " + x);
+			System.out.println("X = " + dF.format(x));
 		} else {
 			System.out.println("Discriminant is strictly negative.There are no real roots for this equation");
 		}
@@ -367,15 +331,11 @@ public class ComputorV1 {
 		}
 
 		System.out.println("Solve: ");
-		if (newParts.get(0).floatIndex == 0) {
-			System.out.println("\t" + newParts.get(0).intIndex + "X = " + newNumeric);
-			float x = newNumeric / newParts.get(0).intIndex;
-			System.out.println("\tX = " + x);
-		} else {
-			System.out.println("\t" + newParts.get(0).floatIndex + "X = " + newNumeric);
-			float x = newNumeric / newParts.get(0).floatIndex;
-			System.out.println("\tX = " + x);
-		}
+
+		System.out.println("\t" + dF.format(newParts.get(0).index) + "X = " + newNumeric);
+		double x = newNumeric / newParts.get(0).index;
+		System.out.println("\tX = " + x);
+
 	}
 
 
@@ -416,8 +376,7 @@ public class ComputorV1 {
 
         private String sign;
 
-        private int intIndex;
-        private float floatIndex;
+        private double index;
 
         private int power;
 
@@ -441,11 +400,11 @@ public class ComputorV1 {
             if (!splittedPart[0].isEmpty()) {
                 getIndex(splittedPart);
             } else {
-                intIndex = 1;
+                index = 1;
             }
 
 
-            if (intIndex == 0 && floatIndex == 0) {
+            if (index == 0) {
                 this.isX = false;
                 this.isDegree = false;
             } else {
@@ -468,62 +427,46 @@ public class ComputorV1 {
                 String[] splittedPart = part.split("^");
                 if (splittedPart[0].isEmpty()) {
                     System.out.println("Bad syntax. You have more than one space one after another , non-numeric parts or some another mistake in your equation near ");
+					System.exit(0);
                 } else {
                     getIndex(splittedPart);
 
-                    power = Integer.parseInt(splittedPart[1]);
+                    try {
+						power = Integer.parseInt(splittedPart[1]);
+					} catch (ClassCastException e) {
+						System.out.println("Bad syntax. You have more than one space one after another , non-numeric parts or some another mistake in your equation near ");
+						System.exit(0);
+					}
+                    toDegree();
 
-                    if (intIndex == 0) {
-                        floatToDegree();
-                    } else if (floatIndex == 0) {
-                        intToDegree();
-                    }
                 }
 
             } else {
                 isDegree = false;
 
-                if (part.contains(".")) {
-                    floatIndex = Float.parseFloat(part);
-                    intIndex = 0;
-                } else {
-                    floatIndex = 0;
-                    intIndex = Integer.parseInt(part);
-                }
+                index = Double.parseDouble(part);
+
             }
         }
 
         private void getIndex(String[] splittedPart) {
-            if (splittedPart[0].contains(".")) {
-                floatIndex = Float.parseFloat(splittedPart[0]);
-                intIndex = 0;
-            } else {
-                floatIndex = 0;
-                intIndex = Integer.parseInt(splittedPart[0]);
-            }
+
+                index = Double.parseDouble(splittedPart[0]);
+
         }
 
-        private void floatToDegree() {
-            float tmpIndex = floatIndex;
+        private void toDegree() {
+            double tmpIndex = index;
             for (int i = power; i > 1; i--) {
-                tmpIndex = tmpIndex * this.floatIndex;
+                tmpIndex = tmpIndex * this.index;
             }
 
-            this.floatIndex = tmpIndex;
-        }
-
-        private void intToDegree() {
-            int tmpIndex = intIndex;
-            for (int i = power; i > 1; i--) {
-                tmpIndex = tmpIndex * this.intIndex;
-            }
-
-            this.intIndex = tmpIndex;
+            this.index = tmpIndex;
         }
 
         @Override
         public String toString() {
-            return "intIndex = " + intIndex + ";\nfloatIndex = " + floatIndex + "\npower = " + power + "\nsign = " + sign + "\nisX = "+ isX +"\n\n";
+            return "index = " + index + "\npower = " + power + "\nsign = " + sign + "\nisX = "+ isX +"\n\n";
         }
     }
 }
