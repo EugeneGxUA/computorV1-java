@@ -1,7 +1,7 @@
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import java.beans.Expression;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +17,7 @@ public class ComputorV1 {
     private static int someNumeric = 0;
 
     private static final Pattern PATTERN_STARS = Pattern.compile("[ * ]+");
+    private static final DecimalFormat dF = new DecimalFormat("#.##"); //"1.2"
 
     final static ScriptEngineManager manager = new ScriptEngineManager();
     final static ScriptEngine engine = manager.getEngineByName("js");
@@ -208,7 +209,7 @@ public class ComputorV1 {
             finalEquation = lastOne + " = 0";
         }
 
-        System.out.println(finalEquation);
+        System.out.println("Last one = " + lastOne);
 
         for (Part part : newParts) {
             if (part.power > 2) {
@@ -216,12 +217,17 @@ public class ComputorV1 {
                 System.out.println("Reduced form: " + toZeroEquation);
                 System.out.println("Final form: " + finalEquation);
                 System.out.println("Polynomial degree is " + part.power + " and it greater than 2. Sorry I can\'t solve this polynomial equation");
+                System.exit(0);
             }
         }
         System.out.println("Basic form: " + equation);
         System.out.println("Reduced form: " + toZeroEquation);
-        System.out.println("Final form: " + finalEquation);
 
+        if (newParts.size() != 0) {
+			System.out.println("Final form: " + finalEquation);
+		} else {
+			System.out.println("Final form: 0");
+		}
     }
 
     private static boolean isQuadratic;
@@ -293,6 +299,85 @@ public class ComputorV1 {
         throw new RuntimeException();
     }
 
+    private static double sqrt(float value) {
+    	if (value == 0 || value == 1) {
+    		return value;
+		}
+
+		double res = value;
+		double diff;
+		do {
+			diff = res;
+			res = 0.5 * (res + value / res);
+		} while (res != diff);
+		return res;
+	}
+
+    private static void solveQuadric() {
+    	float a = 0;
+    	float b = 0;
+    	float c = someNumeric;
+
+
+    	float d;
+		for (Part part : newParts) {
+			if (part.power == 2) {
+				if (part.floatIndex == 0) {
+					a = part.intIndex;
+				} else {
+					a = part.floatIndex;
+				}
+			} else {
+				if (part.floatIndex == 0) {
+					b = part.intIndex;
+				} else {
+					b = part.floatIndex;
+				}
+			}
+		}
+
+		d = b * b - (4 * a * c);
+
+		if (d > 0) {
+			System.out.println("Discriminant is strictly positive, the two solutions are:");
+
+			double x1 = ((b * -1) + sqrt(d)) / (2 * a);
+			double x2 = ((b * -1) - sqrt(d)) / (2 * a);
+
+			System.out.println("X1 = " + x1);
+			System.out.println("X2 = " + x2);
+		} else if (d == 0) {
+
+			System.out.println("Discriminant is equals zero :");
+
+			double x = (b / (2 * a)) * -1;
+			System.out.println("X = " + x);
+		} else {
+			System.out.println("Discriminant is strictly negative.There are no real roots for this equation");
+		}
+	}
+
+	private static void solveLinear() {
+    	float newNumeric = someNumeric * -1;
+
+    	if (newNumeric == 0 || newParts.size() == 0) {
+//			System.out.println("Solve: " + dF.format(newNumeric));
+			System.out.println("Any natural number is a solution of this equation");
+			System.exit(1);
+		}
+
+		System.out.println("Solve: ");
+		if (newParts.get(0).floatIndex == 0) {
+			System.out.println("\t" + newParts.get(0).intIndex + "X = " + newNumeric);
+			float x = newNumeric / newParts.get(0).intIndex;
+			System.out.println("\tX = " + x);
+		} else {
+			System.out.println("\t" + newParts.get(0).floatIndex + "X = " + newNumeric);
+			float x = newNumeric / newParts.get(0).floatIndex;
+			System.out.println("\tX = " + x);
+		}
+	}
+
 
 
     public static void main(String[] args) {
@@ -314,7 +399,8 @@ public class ComputorV1 {
         rightToZero();
         splitParts();
         uniteSameParts();
-        if (isQuadratic) //solve quadric else solve linear
+        if (isQuadratic) solveQuadric();
+        else solveLinear();
 
 
         System.exit(1);
@@ -352,7 +438,7 @@ public class ComputorV1 {
                 splittedPart[i] = splittedPart[i].trim();
             }
 
-            if (!splittedPart[0].equals("")) {
+            if (!splittedPart[0].isEmpty()) {
                 getIndex(splittedPart);
             } else {
                 intIndex = 1;
